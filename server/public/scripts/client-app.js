@@ -1,30 +1,30 @@
 $(document).ready(function() {
-    // getPets();
 
-    // // add a book
-    // $('#book-submit').on('click', postBook);
-    $('#owner_submit').on('click', postOwner);
-    $('#pet_submit').on('click', postPet);
+    //do right away
     getOwner();
     getPets();
-    //loads drop down box
 
-});
+    //event listeners
+    $('#owner_submit').on('click', postOwner);
+    $('#pet_submit').on('click', postPet);
+
+
+}); //doc ready end
 
 
 /**
- * Add a new book to the database and refresh the DOM
+ * Add a new pet to the database and refresh the DOM
  */
 
 function postOwner() {
     event.preventDefault();
+
+    //var assignments
     var ownerInfo = {};
 
     $.each($('#owner_form').serializeArray(), function(i, field) {
         ownerInfo[field.name] = field.value;
     });
-
-    console.log('owners: ', ownerInfo);
 
     $.ajax({
         type: 'POST',
@@ -33,10 +33,10 @@ function postOwner() {
         success: function() {
             console.log('POST /owner works!');
             $('#pet_list').empty();
-            getPets();
+            // something here to repopulate DOM with new info?
         },
         error: function(response) {
-            console.log('POST /owner does not work...');
+            console.log('POST /owner does not work...', response);
         },
     });
 }
@@ -44,16 +44,14 @@ function postOwner() {
 function postPet() {
     event.preventDefault();
 
+    //var assignments
     var petInfo = {};
     var owner_id = $("#selectOwners").val();
-
-    console.log(owner_id);
+    petInfo.owner_id = owner_id;
 
     $.each($('#pets_form').serializeArray(), function(i, field) {
         petInfo[field.name] = field.value;
     });
-    petInfo.owner_id = owner_id;
-    console.log('pet: ', petInfo);
 
     $.ajax({
         type: 'POST',
@@ -62,7 +60,7 @@ function postPet() {
         success: function() {
             console.log('POST /pet works!');
             $('#pet_list').empty();
-            //getPets(); Add this later
+            // something here to repopulate DOM with new info?
         },
         error: function(response) {
             console.log('POST /pets does not work...');
@@ -72,17 +70,19 @@ function postPet() {
 
 //loads drop down names
 function getOwner() {
+
     $.ajax({
         type: 'GET',
         url: '/owner',
         success: function(owners) {
             $('#selectOwners').empty();
-            console.log('GET /getOwnerList returns:', owners);
+            console.log('GET /owner returns:', owners);
             owners.forEach(function(owners, i) {
                 var option = owners.first_name + " " + owners.last_name;
                 var owner_id = owners.id;
                 var $selectOption = $('<option value="' + owner_id + '">' + option + '</option>');
                 $('#selectOwners').append($selectOption);
+                // something here to repopulate DOM with new info?
             });
         },
         error: function() {
@@ -92,6 +92,7 @@ function getOwner() {
 }
 
 function getPets() {
+
     $.ajax({
         type: 'GET',
         url: '/pets',
