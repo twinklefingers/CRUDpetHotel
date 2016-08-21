@@ -1,17 +1,17 @@
 h1 {
-  font-family: 'Taviraj', serif;
-  color: indigo;
+    font-family: 'Taviraj', serif;
+    color: indigo;
 }
-
 h2 {
-  color: gray;
+    color: gray;
 }
-
-tr{
-  background-color: aqua;
-  border: 1px solid black;
+tr {
+    background-color: aqua;
+    border: 1px solid black;
 }
-
-td{
-  border: 1px solid black;
+td {
+    border: 1px solid black;
+}
+.selectOwnerDiv {
+    padding: 10px;
 }

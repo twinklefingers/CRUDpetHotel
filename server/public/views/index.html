@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Stupid Pet Hotel</title>
+    <title>Pet Hotel</title>
     <script src="/vendor/jquery.min.js"></script>
     <script src="/scripts/client-app.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Taviraj" rel="stylesheet">
@@ -32,9 +32,11 @@
         <div class="form-group">
             <form id="pets_form">
 
-                <select id="selectOwners">
-                </select>
-                <!--Add spacer -->
+                <div class="selectOwnerDiv">
+                    <select id="selectOwners">
+                    </select>
+                </div>
+
                 <label for="pet_name">Pet Name:</label>
                 <input type="text" id="pet_name" name="pet_name" class="form-control" />
 
@@ -58,6 +60,7 @@
                     <th>Update</th>
                     <th>Delete</th>
                     <th>Check In/Out</th>
+                    <!-- append new data here -->
                 </tr>
             </table>
 

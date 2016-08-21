@@ -16,6 +16,7 @@ $(document).ready(function() {
  * Add a new pet to the database and refresh the DOM
  */
 
+// AJAX POST request, event.preventDefault, $.each on form, .serializeArray()
 function postOwner() {
     event.preventDefault();
 
@@ -41,6 +42,7 @@ function postOwner() {
     });
 }
 
+// AJAX POST request, event.preventDefault, $.each on form, .serializeArray()
 function postPet() {
     event.preventDefault();
 
@@ -64,10 +66,11 @@ function postPet() {
         },
         error: function(response) {
             console.log('POST /pets does not work...');
-        },
+        }
     });
-};
+}
 
+// AJAX GET request, data.forEach, .val(), append data
 //loads drop down names
 function getOwner() {
 
@@ -91,6 +94,7 @@ function getOwner() {
     });
 }
 
+// AJAX GET request, .forEach(), .val(), append data
 function getPets() {
 
     $.ajax({
